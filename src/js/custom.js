@@ -37,6 +37,25 @@ const errors        = {
 
 }
 
+/*
+================================================================================
+  Plugins
+================================================================================
+*/
+
+// Password Strength
+passwordMeter.pwstrength({
+	ui: {
+		showVerdictsInsideProgressBar: true,
+		progressBarEmptyPercentage: 0,
+		progressBarMinPercentage: 10,
+		progressBarExtraCssClasses: "progress-bar-striped active",
+	},
+	common: {
+		minChar: minPassLength
+	}
+});
+
 
 
 });
