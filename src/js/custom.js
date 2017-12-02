@@ -58,6 +58,62 @@ passwordMeter.pwstrength({
 
 /*
 ================================================================================
+  Crypt Functions
+================================================================================
+*/
+
+// Encrypt
+function encryptFile(file, password, downloadButton, callback){
+
+	// Read file and set downloadable data
+	readFile(file, (event) => {
+
+		// Encrypt file
+		encryptedFile = CryptoJS.AES.encrypt(event.target.result, password);
+
+		// Set downloadable data
+		downloadButton.setAttribute('href', 'data:application/octet-stream,' + encryptedFile);
+		downloadButton.setAttribute('download', file.name + '.encrypted');
+
+		// Callback
+		callback();
+
+	}, (fileReader) => { fileReader.readAsDataURL(file) });
+
+}
+
+// Decrypt
+function decryptFile(file, password, downloadButton, callback){
+
+	// Read file and set downloadable data
+	readFile(file, (event) => {
+
+		// Decrypt file
+		decryptedFile = CryptoJS.AES.decrypt(event.target.result, password).toString(CryptoJS.enc.Latin1);
+
+		// Check pass phrase
+		if(checkPassPhrase(decryptedFile)){
+
+			// Set downloadable data
+			downloadButton.setAttribute('href', decryptedFile);
+			downloadButton.setAttribute('download', file.name.replace('.encrypted', ''));
+
+			// Callback
+			callback();
+
+		}else{
+
+			// Callback with error
+			callback(errors.INVALID_PASS);
+
+		}
+
+	}, (fileReader) => { fileReader.readAsText(file) });
+
+}
+
+/*
+================================================================================
   Helper Functions
 ================================================================================
 */
