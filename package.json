@@ -1,0 +1,30 @@
+{
+  "name": "Keeper",
+  "version": "1.0.0",
+  "description": "Encrypts and decrypts your files with the password you specify",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build-osx": "electron-packager . \"Keeper\" --platform=darwin --icon ./src/img/icon.icns --out ./build --overwrite",
+    "build-linux": "electron-packager . \"Keeper\" --platform=linux --icon ./src/img/icon.png --out ./build --overwrite",
+    "build-win32": "electron-packager . \"Keeper\" --platform=win32 --icon ./src/img/icon.ico --out ./build --overwrite",
+    "build": "electron-packager . \"Keeper\" --platform=all --icon ./src/img/icon --out ./build --overwrite"
+  },
+  "keywords": [
+    "files",
+    "encrypt",
+    "decrypt"
+  ],
+  "author": "Arda Gedik <ardagedikk@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "crypto-js": "^3.1.9-1",
+    "electron": "^1.7.9",
+    "jquery": "^3.2.1",
+    "pwstrength-bootstrap": "^2.1.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^10.1.0"
+  }
+}

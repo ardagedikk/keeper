@@ -1,0 +1,14 @@
+body{
+
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	font-variant: normal;
+  margin : 0;
+  padding: 0;
+
+}
+
+.main-wrapper{
+	margin: 15px auto;
+}
