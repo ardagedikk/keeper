@@ -58,6 +58,104 @@ passwordMeter.pwstrength({
 
 /*
 ================================================================================
+  Events
+================================================================================
+*/
+
+// Trigger input when the browse is clicked
+browseButton.on('click', () => {
+	browseInput.trigger('click');
+});
+
+// When files are selected
+browseInput.on('change', (event) => {
+
+	// Is empty ?
+	if(isEmpty(event.target.files)){
+		resetElements();
+		return;
+	}
+
+	// Set files
+	uploadedFiles = event.target.files;
+
+	// Set files information
+	if(checkSize((event.target.files.length), 1))
+		browseButton.text(event.target.files.length+ " Files");
+	else
+		browseButton.text(event.target.files[0].name);
+
+});
+
+// Reset
+resetButton.on('click', () => {
+	resetElements();
+});
+
+// When the encrypt button is clicked
+encryptButton.on('click', () => {
+
+	// Create temporary download button
+	let downloadButton = document.createElement('a');
+
+	// Run process per file
+	processPerFile(uploadedFiles, (file) => {
+
+		// Encrypt file (Transfers the downloadable data to download button)
+		encryptFile(file, password.val(), downloadButton, () => {
+
+			// Trigger download button
+			downloadButton.click();
+
+		});
+
+	});
+
+});
+
+// When the decrypt button is clicked
+decryptButton.on('click', () => {
+
+	// Create temporary download button
+	let downloadButton = document.createElement('a'),
+			stopper = false;
+
+	// Run process per file
+	processPerFile(uploadedFiles, (file) => {
+
+		// Decrypt file (Transfers the downloadable data to download button)
+		decryptFile(file, password.val(), downloadButton, (err) => {
+
+			// Skip other operations if stopper is active
+			if(!stopper){
+
+				// Is there an error
+				if(err){
+
+					// Show error
+					messageModal.find('span').text(err);
+					messageModal.modal('show');
+
+				}else{
+
+					// Trigger download button
+					downloadButton.click();
+
+				}
+
+			}
+
+			// Activate stopper if an error occurs
+			if(err) stopper = true;
+
+		});
+
+	});
+
+});
+
+/*
+================================================================================
   Crypt Functions
 ================================================================================
 */
