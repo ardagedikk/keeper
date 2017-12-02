@@ -12,3 +12,23 @@ body{
 .main-wrapper{
 	margin: 15px auto;
 }
+
+.btn-group:nth-child(2n+1) {
+  padding-right: 4px;
+}
+
+.btn-group:nth-child(2n) {
+  padding-left: 4px;
+}
+
+.mb-10,
+.progress{
+	margin-bottom: 10px;
+}
+
+.alert{
+
+	margin: 0;
+	text-align: center;
+
+}
