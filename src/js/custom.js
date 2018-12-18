@@ -15,6 +15,7 @@ const browseInput  	= $('.browse-input'),
 			browseButton  = $('.browse-btn'),
 			encryptButton = $('.encrypt'),
 			decryptButton = $('.decrypt'),
+			generateButton = $('.generate'),
 			resetButton   = $('.reset');
 
 // Temporary
@@ -85,6 +86,11 @@ browseInput.on('change', (event) => {
 	else
 		browseButton.text(event.target.files[0].name);
 
+});
+
+// Generate
+generateButton.on('click', () => {
+	generatePassword();
 });
 
 // Reset
@@ -297,6 +303,19 @@ function checkErrors(){
 	// No error
 	return false;
 
+}
+
+// Generate Password
+function generatePassword(){
+
+	var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        pass = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        pass += charset.charAt(Math.floor(Math.random() * n));
+    }
+	password.val(pass);
+	passwordMeter.pwstrength("forceUpdate");
 }
 
 // Reset Elements
