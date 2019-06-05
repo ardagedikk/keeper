@@ -22,11 +22,11 @@ function createMainWindow() {
 	const win = new BrowserWindow({
 
 		width: 500,
-		height: 250,
+		height: 270,
 		minWidth: 500,
-		height: 250,
+		height: 270,
 		maxWidth: 500,
-		maxHeight: 250
+		maxHeight: 270
 
 	});
 
