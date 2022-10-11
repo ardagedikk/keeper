@@ -25,6 +25,6 @@
     "pwstrength-bootstrap": "^2.1.1"
   },
   "devDependencies": {
-    "electron-packager": "^10.1.0"
+    "electron-packager": "^16.0.0"
   }
 }
