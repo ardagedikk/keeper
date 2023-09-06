@@ -20,7 +20,7 @@
   "dependencies": {
     "bootstrap": "^3.4.1",
     "crypto-js": "^3.1.9-1",
-    "electron": "^1.7.9",
+    "electron": "^22.3.21",
     "jquery": "^3.2.1",
     "pwstrength-bootstrap": "^2.1.1"
   },
